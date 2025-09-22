@@ -1,4 +1,4 @@
-#Создай собственный Шутер!
+
 
 from pygame import *
 from random import *
@@ -14,9 +14,9 @@ loose = font1.render('YOU LOOSE!', True, (255, 255, 255))
 
 
 #создай окно игры
-window = display.set_mode((1800, 1200))
+window = display.set_mode((1000, 600))
 display.set_caption('Понг Пинг')
-background = transform.scale(image.load('Fallen kingdom.jpg'), (1800, 1200))
+background = transform.scale(image.load('Fallen kingdom.jpg'), (1000, 600))
 
 class GameSprite(sprite.Sprite):
     def __init__(self, player_image, player_x, player_y, player_speed, w, h):
@@ -33,13 +33,20 @@ class Player(GameSprite):
     def update(self):
         key_pressed = key.get_pressed()
 
-        if key_pressed[K_a] and self.rect.x >= 0:
-            self.rect.x -= self.speed
+        if key_pressed[K_w] and self.rect.y >= 0:
+            self.rect.y -= self.speed
 
-        if key_pressed[K_d] and self.rect.x < 1030:
-            self.rect.x += self.speed
+        if key_pressed[K_s] and self.rect.y < 425:
+            self.rect.y += self.speed
     
+    def updateBAD(self):
+        key_pressed = key.get_pressed()
 
+        if key_pressed[K_UP] and self.rect.y >= 0:
+            self.rect.y -= self.speed
+
+        if key_pressed[K_DOWN] and self.rect.y < 425:
+            self.rect.y += self.speed
 
 
 
@@ -56,8 +63,8 @@ game = True
 finish = False
 
 
-catBoes = Player('bobski.png', 600, 690, 10, 70, 110)
-
+catBoes = Player('bobski.png', 0, 150, 10, 85, 175)
+catVragec = Player('Knight.png', 915, 150, 10, 85, 175)
 
 while game:
     for e in event.get():
@@ -72,7 +79,8 @@ while game:
         window.blit(background,(0,0))        
         catBoes.update()
         catBoes.reset()
-        
+        catVragec.updateBAD()
+        catVragec.reset()
 
         
 
