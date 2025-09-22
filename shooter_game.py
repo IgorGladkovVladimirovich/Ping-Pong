@@ -55,7 +55,8 @@ class Player(GameSprite):
 # mixer.music.set_volume(0.3)
 # kick = mixer.Sound('fire.ogg')
 
-
+speed_x = 3
+speed_y = 3
 
 
 clock = time.Clock()
@@ -65,6 +66,7 @@ finish = False
 
 catBoes = Player('bobski.png', 0, 150, 10, 85, 175)
 catVragec = Player('Knight.png', 915, 150, 10, 85, 175)
+plagina = GameSprite('Plague.png', 500, 300, 12, 50, 50)
 
 while game:
     for e in event.get():
@@ -75,13 +77,15 @@ while game:
             game = False
 
     if finish != True:
+        plagina.rect.x += speed_x
+        plagina.rect.y += speed_y
         
         window.blit(background,(0,0))        
         catBoes.update()
         catBoes.reset()
         catVragec.updateBAD()
         catVragec.reset()
-
+        plagina.reset()
         
 
 
