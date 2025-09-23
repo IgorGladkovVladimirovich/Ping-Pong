@@ -1,18 +1,16 @@
 
 
-
-
 from pygame import *
 from random import *
 from time import time as tm
 
 mixer.init()
 font.init()
-font1 = font.SysFont('Arial', 100)
-font2 = font.SysFont('Arial', 40)
+font1 = font.SysFont('Arial', 70)
+font2 = font.SysFont('Arial', 70)
 
-win = font1.render('YOU WIN!', True, (255, 10, 255))
-loose = font1.render('YOU LOOSE!', True, (255, 255, 255))
+loose1 = font1.render('Villager looses (sadly)!', True, (255, 10, 255))
+loose2 = font1.render('Knight looses (badly)!', True, (255, 255, 255))
 
 
 #создай окно игры
@@ -113,6 +111,13 @@ while game:
         if sprite.collide_rect(catBoes, plagina) or sprite.collide_rect(catVragec, plagina):
             speed_x *= -1
 
+        if plagina.rect.x > 1000:
+            finish = True
+            window.blit(loose2, (250, 300))
+        
+        if plagina.rect.x < -55:
+            finish = True
+            window.blit(loose1, (250, 300))
 
     display.update()
     clock.tick(40)
