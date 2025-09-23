@@ -1,5 +1,7 @@
 
 
+
+
 from pygame import *
 from random import *
 from time import time as tm
@@ -79,7 +81,12 @@ while game:
     if finish != True:
         plagina.rect.x += speed_x
         plagina.rect.y += speed_y
-        
+        if plagina.rect.y <= 0:
+            speed_y *= -1
+
+        if plagina.rect.y >= 550:
+            speed_y *= -1
+    
         window.blit(background,(0,0))        
         catBoes.update()
         catBoes.reset()
@@ -87,6 +94,24 @@ while game:
         catVragec.reset()
         plagina.reset()
         
+        plagina.rect.x += speed_x
+
+        plagina.rect.y += speed_y
+
+        if plagina.rect.y <= 0:
+            speed_y *= -1
+
+        if plagina.rect.y >= 550:
+            speed_y *= -1
+
+        if plagina.rect.y <= 0:
+            speed_y *= -1
+
+        if plagina.rect.y >= 550:
+            speed_y *= -1
+
+        if sprite.collide_rect(catBoes, plagina) or sprite.collide_rect(catVragec, plagina):
+            speed_x *= -1
 
 
     display.update()
